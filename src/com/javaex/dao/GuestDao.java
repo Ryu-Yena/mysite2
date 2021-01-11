@@ -66,7 +66,7 @@ public class GuestDao {
 			// 3. SQL문 준비 / 바인딩 / 실행
 			String query = ""; // 쿼리문 문자열만들기, ? 주의
 			query += " insert into guestbook ";
-			query += " vlaues (seq_no.nextval, ?, ?, ?, ?) ";
+			query += " vlaues (seq_no.nextval, ?, ?, ?, TO_DATE(SYSDATE)) ";
 			// System.out.println(query);
 
 			pstmt = conn.prepareStatement(query); // 쿼리로 만들기
@@ -74,7 +74,6 @@ public class GuestDao {
 			pstmt.setString(1, guestVo.getName()); 
 			pstmt.setString(2, guestVo.getPassword());
 			pstmt.setString(3, guestVo.getContent());
-			pstmt.setString(4, guestVo.getReg_date());
 
 			count = pstmt.executeUpdate(); // 쿼리문 실행
 
@@ -137,13 +136,13 @@ public class GuestDao {
 		try {
 			// 3. SQL문 준비 / 바인딩 / 실행
 			String query = ""; // 쿼리문 문자열만들기, ? 주의
-			query += " delete from gusetbook ";
+			query += " delete gusetbook ";
 			query += " where no = ? ";
 			query += " and password = ? ";
+			
 			pstmt = conn.prepareStatement(query); // 쿼리로 만들기
-
 			pstmt.setInt(1, no);
-			pstmt.setNString(2, password);
+			pstmt.setString(2, password);
 
 			count = pstmt.executeUpdate(); // 쿼리문 실행
 
