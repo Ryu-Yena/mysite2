@@ -91,6 +91,17 @@ public class UserController extends HttpServlet {
 			session.invalidate();
 			
 			WebUtil.redirect(request, response, "/mysite2/main");
+		}else if ("modifyForm".equals(action)) {
+			System.out.println("수정폼");
+			
+			WebUtil.forward(request, response, "/WEB-INF/views/user/modifyForm.jsp");
+			
+		}else if ("modify".equals(action)) {
+			System.out.println("수정");
+			
+			
+			
+			WebUtil.redirect(request, response, "/mysite2/main");
 		}
 	}
 

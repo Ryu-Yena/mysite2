@@ -129,4 +129,37 @@ public class UserDao {
 		
 		return userVo;
 	}
+	
+	
+	public UserVo upUser(String pw, String name, String gander) {
+		UserVo userVo = null;
+		getConnection();
+		
+		try {
+
+			// 3. SQL문 준비 / 바인딩 / 실행
+			String query = "";
+			query +=" update   ";
+			query +="  ";
+			query +="  ";
+			query +="   ";
+			query +="   ";
+			
+			//쿼리로 만들기(번역)
+
+
+			
+			//쿼리문 실행
+			
+			
+			// 4.결과처리
+			
+			}
+		} catch (SQLException e) {
+			System.out.println("error:" + e);
+		}
+		close();
+		
+		return userVo;
+	}
 }
