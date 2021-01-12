@@ -63,7 +63,7 @@
 
 			<div id="user">
 				<div id="loginForm">
-					<form action="" method="">
+					<form action="/mysite2/user" method="get">
 
 						<!-- 아이디 -->
 						<div class="form-group">
@@ -82,7 +82,7 @@
 		                <div class="button-area">
 		                    <button type="submit" id="btn-submit">로그인</button>
 		                </div>
-						
+						<input type="text" name="action" value="login">
 					</form>
 				</div>
 				<!-- //loginForm -->

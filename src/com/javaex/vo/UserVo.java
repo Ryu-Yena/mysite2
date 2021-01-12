@@ -12,7 +12,15 @@ public class UserVo {
 	public UserVo() {
 	}
 
-		
+	
+
+	public UserVo(int no, String password) {
+		super();
+		this.no = no;
+		this.password = password;
+	}
+
+
 	public UserVo(String id, String password, String name, String gender) {
 		super();
 		this.id = id;

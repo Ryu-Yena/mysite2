@@ -92,4 +92,41 @@ public class UserDao {
 		return count;
 	}
 	
+	public UserVo getUser(String id, String pw) {
+		UserVo userVo = null;
+		getConnection();
+		
+		try {
+
+			// 3. SQL문 준비 / 바인딩 / 실행
+			String query = "";
+			query +=" select  no, ";
+			query +="         name ";
+			query +=" from users ";
+			query +=" where id = ? ";
+			query +=" and password = ? ";
+			
+			//쿼리로 만들기(번역)
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, id);
+			pstmt.setString(2, pw);
+
+			
+			rs = pstmt.executeQuery(); //쿼리문 실행
+			
+			
+			// 4.결과처리
+			while(rs.next()) {
+				int no = rs.getInt("no");
+				String name = rs.getString("name");
+				
+				userVo = new UserVo(no, name);
+			}
+		} catch (SQLException e) {
+			System.out.println("error:" + e);
+		}
+		close();
+		
+		return userVo;
+	}
 }
