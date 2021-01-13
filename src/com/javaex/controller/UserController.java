@@ -70,7 +70,7 @@ public class UserController extends HttpServlet {
 				System.out.println("로그인 실패");
 				
 				//리다이렉트 --> 로그인 폼
-				WebUtil.redirect(request, response, "/mysite2/user?action=loginForm");
+				WebUtil.redirect(request, response, "/mysite2/user?action=loginForm&result=fail");
 				
 				
 			} else { //성공일때
