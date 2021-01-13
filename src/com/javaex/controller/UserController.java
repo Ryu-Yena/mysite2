@@ -94,11 +94,49 @@ public class UserController extends HttpServlet {
 		}else if ("modifyForm".equals(action)) {
 			System.out.println("수정폼");
 			
+			//세션에 있는 no
+			HttpSession session = request.getSession();
+			UserVo authUser = (UserVo)session.getAttribute("authUser");
+			
+			int no = authUser.getNo();
+			
+			//회원정보 가져오기
+			UserDao userDao = new UserDao();
+			UserVo userVo = userDao.getUser(no);
+			
+			System.out.println("getUser(no)---> " + userVo);
+			
+			//userVo 전달 포워드
+			request.setAttribute("userVo", userVo);
+			
+			//포워드
 			WebUtil.forward(request, response, "/WEB-INF/views/user/modifyForm.jsp");
 			
 		}else if ("modify".equals(action)) {
-			System.out.println("수정");
+			System.out.println("회원정보 수정");
 			
+			//파라미터값
+			String password = request.getParameter("pw");
+			String name = request.getParameter("name");
+			String gender = request.getParameter("gender");
+			
+			//세션에 있는 no 가져오기
+			HttpSession session = request.getSession();
+			UserVo authUser = (UserVo)session.getAttribute("authUser");
+			int no = authUser.getNo();
+			
+			//UserVo로 묶기
+			UserVo userVo = new UserVo(no, password, name, gender);
+			
+			System.out.println(userVo);
+			
+			//dao > update() 실행
+			UserDao userDao = new UserDao();
+			userDao.update(userVo);
+			
+			//session 정보도 없데이트
+			//session의 name 값만 변경하면 된다.
+			authUser.setName(name); //체크하기
 			
 			
 			WebUtil.redirect(request, response, "/mysite2/main");
