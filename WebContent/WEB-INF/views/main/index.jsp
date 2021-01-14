@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <!DOCTYPE html>
 <html>
@@ -15,7 +15,7 @@
 	<div id="wrap">
 
 		<!-- header +navi 옮김 -->
-		<jsp.include page="/WEB-INF/views/include/header.jsp"></jsp.include>
+		<c:import url="/WEB-INF/views/include/header.jsp"></c:import>
 		
 		<!-- aside없음 -->
 
