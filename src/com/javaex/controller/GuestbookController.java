@@ -1,6 +1,8 @@
 package com.javaex.controller;
 
 import java.io.IOException;
+import java.util.List;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -23,6 +25,13 @@ public class GuestbookController extends HttpServlet {
 		
 		if("addlist".equals(action)) {
 			System.out.println("방명록");
+			
+			GuestDao guestDao = new GuestDao();
+			List<GuestVo> guestList = guestDao.getGuestList();
+			
+			request.setAttribute("guestList", guestList);
+			
+			//addlist 포워드
 			WebUtil.forward(request, response, "/WEB-INF/views/guestbook/addList.jsp");
 		}else if("add".equals(action)) {
 			System.out.println("방명록 등록");
