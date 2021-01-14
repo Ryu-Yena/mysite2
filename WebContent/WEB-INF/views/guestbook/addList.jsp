@@ -73,7 +73,7 @@
 				</form>	
 				
 				<!-- //guestRead -->
-				<c:forEach items="${guestList}" var="vo">
+				<c:forEach items="${guestList}" var="guestList">
 					<table class="guestRead">
 						<colgroup>
 								<col style="width: 10%;">
