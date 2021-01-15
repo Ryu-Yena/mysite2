@@ -23,7 +23,7 @@ public class GuestbookController extends HttpServlet {
 		String action = request.getParameter("action");
 		System.out.println("action=" + action);
 		
-		if("addlist".equals(action)) {
+		if("addList".equals(action)) {
 			System.out.println("방명록");
 			
 			GuestDao guestDao = new GuestDao();

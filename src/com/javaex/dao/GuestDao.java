@@ -6,7 +6,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import com.javaex.vo.GuestVo;
@@ -66,8 +65,8 @@ public class GuestDao {
 			// 3. SQL문 준비 / 바인딩 / 실행
 			String query = ""; // 쿼리문 문자열만들기, ? 주의
 			query += " insert into guestbook ";
-			query += " vlaues (seq_no.nextval, ?, ?, ?, TO_DATE(SYSDATE)) ";
-			// System.out.println(query);
+			query += " vlaues (seq_no.nextval, ?, ?, ?, sysdate) ";
+			//System.out.println(query);
 
 			pstmt = conn.prepareStatement(query); // 쿼리로 만들기
 
@@ -78,6 +77,7 @@ public class GuestDao {
 			count = pstmt.executeUpdate(); // 쿼리문 실행
 
 			// 4.결과처리
+			System.out.println(count + "건 저장");
 
 		} catch (SQLException e) {
 			System.out.println("error:" + e);
@@ -98,7 +98,7 @@ public class GuestDao {
 				query += " select  no, ";
 				query += "         name, ";
 				query += "         content, ";
-				query += "         reg_date ";
+				query += "         to_char(reg_date, 'YY/MM/DD HH:MI') ";
 				query += " from guestbook";
 				
 				pstmt = conn.prepareStatement(query);
