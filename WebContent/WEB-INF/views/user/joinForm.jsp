@@ -70,10 +70,10 @@
 							<span class="form-text">성별</span> 
 							
 							<label for="rdo-male">남</label> 
-							<input type="radio" id="rdo-male" name="gender" value="" > 
+							<input type="radio" id="rdo-male" name="gender" value="male" > 
 							
 							<label for="rdo-female">여</label> 
-							<input type="radio" id="rdo-female" name="gender" value="" > 
+							<input type="radio" id="rdo-female" name="gender" value="female" > 
 
 						</div>
 
@@ -102,7 +102,7 @@
 		<div class="clear"></div>
 		
 		<!-- footer -->
-		<jsp:include page="/WEB-INF/views/include/footer.jsp"></jsp:include>
+		<c:import url="/WEB-INF/views/include/footer.jsp"></c:import>
 
 	</div>
 	<!-- //wrap -->

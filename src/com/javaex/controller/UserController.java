@@ -27,90 +27,96 @@ public class UserController extends HttpServlet {
 		if("joinForm".equals(action)) {
 			System.out.println("회원가입폼");
 			WebUtil.forward(request, response, "/WEB-INF/views/user/joinForm.jsp");
-			
+		
 		}else if("join".equals(action)) {
-			System.out.println("화원가입");
+			System.out.println("회원가입");
 			
-			//파라미터 값 꺼내기
-			String id = request.getParameter("id");
+
+			//   파라미터 값 꺼내기
+			String id = request.getParameter("uid");
 			String password = request.getParameter("pw");
-			String name = request.getParameter("name");
+			String name = request.getParameter("uname");
 			String gender = request.getParameter("gender");
 			
-			//Vo로 묶기
+			//   vo로 묶기 --> vo만들기    생성자 추가
 			UserVo userVo = new UserVo(id, password, name, gender);
 			System.out.println(userVo.toString());
-
 			
-			//dao insert(Vo) 사용 > 저장 > 회원가입
+			
+			//   dao클래스 insert(vo) 사용-->저장-->회원가입
 			UserDao userDao = new UserDao();
 			userDao.insert(userVo);
 			
-			//포워드
+			//포워드 --> joinOk.jsp
 			WebUtil.forward(request, response, "/WEB-INF/views/user/joinOk.jsp");
 			
 		}else if("loginForm".equals(action)) {
 			System.out.println("로그인 폼");
 			
+			//포워드 --> loginForm.jsp
 			WebUtil.forward(request, response, "/WEB-INF/views/user/loginForm.jsp");
 			
 		}else if("login".equals(action)) {
 			System.out.println("로그인");
-			//파라미터 id pw
+			//파라미터  id pw
 			String id = request.getParameter("id");
 			String pw = request.getParameter("pw");
 			
-			//dao > getUSer();
+			//dao --> getUser();
 			UserDao userDao = new UserDao();
 			UserVo authVo = userDao.getUser(id, pw);
+			System.out.println(authVo);	 //id pw ---> no, name
+					
 			
-			//System.out.println(authVo.toString());
-			
-			if(authVo == null) {
+			if(authVo == null) { //로그인 실패
 				System.out.println("로그인 실패");
-				
-				//리다이렉트 --> 로그인 폼
+				//리다이렉트 -->로그인폼
 				WebUtil.redirect(request, response, "/mysite2/user?action=loginForm&result=fail");
 				
-				
-			} else { //성공일때
+			}else { //성공일때
 				System.out.println("로그인 성공");
 				
-				//세션영역에 필요한 값(vo) 넣어준다.
+				//세션영역에 필요한값(vo) 넣어준다.
 				HttpSession session = request.getSession();
-				session.setAttribute("authUser", authVo );
+				session.setAttribute("authUser", authVo);
 				
 				WebUtil.redirect(request, response, "/mysite2/main");
+				
 			}
-		}else if ("logout".equals(action)) {
+			
+		}else if("logout".equals(action)) {
 			System.out.println("로그아웃");
 			
-			//세션영역에 있는 vo를 삭제해야함
+			//세션영역에 있는 vo 를 삭제해야함
 			HttpSession session = request.getSession();
 			session.removeAttribute("authUser");
 			session.invalidate();
 			
 			WebUtil.redirect(request, response, "/mysite2/main");
-		}else if ("modifyForm".equals(action)) {
-			System.out.println("수정폼");
 			
-			//세션에 있는 no
+			
+		}else if("modifyForm".equals(action)) {
+			System.out.println("회원 수정 폼");
+			
+			//세션에 있는 no 
 			HttpSession session = request.getSession();
 			UserVo authUser = (UserVo)session.getAttribute("authUser");
-			
+
+			//로그인 안한 상태면 가져올 수 없다
 			int no = authUser.getNo();
 			
 			//회원정보 가져오기
 			UserDao userDao = new UserDao();
-			UserVo userVo = userDao.getUser(no);
+			UserVo userVo =userDao.getUser(no);
 			
-			System.out.println("getUser(no)---> " + userVo);
+			System.out.println("getUser(no)-->" + userVo);
 			
-			//userVo 전달 포워드
+			//userVo 전달 포워드			
 			request.setAttribute("userVo", userVo);
 			
 			//포워드
 			WebUtil.forward(request, response, "/WEB-INF/views/user/modifyForm.jsp");
+			
 			
 		}else if ("modify".equals(action)) {
 			System.out.println("회원정보 수정");
