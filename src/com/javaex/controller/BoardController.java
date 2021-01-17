@@ -71,6 +71,44 @@ public class BoardController extends HttpServlet {
 			//리다이렉트
 			WebUtil.redirect(request, response, "/mysite2/board");
 			
+		}else if("read".equals(action)) {
+			System.out.println("게시글 읽기");
+			
+			
+			//파라미터값
+			int no = Integer.parseInt(request.getParameter("no"));
+			System.out.println(no);
+			
+			//dao
+			BoardDao boardDao = new BoardDao();
+			
+			//조회수 업데이트...
+			boardDao.hitB(no);
+			
+			//dao getB
+			BoardVo boardVo = boardDao.getB(no);
+			
+						
+			//어트리뷰트
+			request.setAttribute("boardVo", boardVo);
+			
+			//포워드
+			WebUtil.forward(request, response, "/WEB-INF/views/board/read.jsp");
+		
+		
+		}else if("writeForm".equals(action)) {
+			System.out.println("게시글 수정 폼");
+			
+			int no = Integer.parseInt(request.getParameter("no"));
+			
+			BoardDao boardDao = new BoardDao();
+			BoardVo boardVo = boardDao.getB(no);
+			
+			request.setAttribute("boardVo", boardVo);
+			
+			//포워드
+			WebUtil.forward(request, response, "/WEB-INF/views/board/modifyForm.jsp");
+			
 		}else {
 			System.out.println("게시판 메인 리스트");
 			

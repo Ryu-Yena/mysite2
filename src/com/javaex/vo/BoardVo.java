@@ -12,7 +12,18 @@ public class BoardVo {
 	
 	
 
+
+	public BoardVo(int no, String title, String name, int hit, String reg_date, int user_no) {
+		super();
+		this.no = no;
+		this.title = title;
+		this.name = name;
+		this.hit = hit;
+		this.reg_date = reg_date;
+		this.user_no = user_no;
+	}
 	
+
 	public BoardVo(int no, String title, String name, String content, int hit, String reg_date, int user_no) {
 		super();
 		this.no = no;
@@ -24,17 +35,7 @@ public class BoardVo {
 		this.user_no = user_no;
 	}
 
-	
 
-	public BoardVo(int no, String title, String name, int hit, String reg_date, int user_no) {
-		super();
-		this.no = no;
-		this.title = title;
-		this.name = name;
-		this.hit = hit;
-		this.reg_date = reg_date;
-		this.user_no = user_no;
-	}
 
 	public BoardVo(String title, String content, int user_no) {
 		super();

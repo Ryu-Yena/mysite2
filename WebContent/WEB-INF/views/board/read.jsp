@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 
 <!DOCTYPE html>
@@ -7,8 +7,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link href="../../assets/css/mysite.css" rel="stylesheet" type="text/css">
-<link href="../../assets/css/board.css" rel="stylesheet" type="text/css">
+<link href="/mysite2/assets/css/mysite.css" rel="stylesheet" type="text/css">
+<link href="/mysite2/assets/css/board.css" rel="stylesheet" type="text/css">
 
 </head>
 
@@ -20,34 +20,8 @@
 			<h1><a href="">MySite</a></h1>
 			
 			
-			<!--  -->
-				<!-- 로그인실패시, 로그인전 -->
-				<ul>
-					<li><a href="">로그인</a></li>
-					<li><a href="">회원가입</a></li>
-				</ul>
-				
-			<!-- 로그인성공했을때 -->	
-			<!-- 
-				<ul>
-					<li>황일영 님 안녕하세요^^</li>
-					<li><a href="">로그아웃</a></li>
-					<li><a href="">회원정보수정</a></li>
-				</ul>
-			-->
-		</div>
-		<!-- //header -->
-		
-		<div id="nav">
-			<ul>
-				<li><a href="">방명록</a></li>
-				<li><a href="">갤러리</a></li>
-				<li><a href="">게시판</a></li>
-				<li><a href="">입사지원서</a></li>
-			</ul>
-			<div class="clear"></div>
-		</div>
-		<!-- //nav -->
+		<!-- header +navi 옮김 -->
+		<c:import url="/WEB-INF/views/include/header.jsp"></c:import>
 
 		<div id="aside">
 			<h2>게시판</h2>
@@ -79,43 +53,38 @@
 						<!-- 작성자 -->
 						<div class="form-group">
 							<span class="form-text">작성자</span>
-							<span class="form-value">정우성</span>
+							<span class="form-value">${boardVo.name}</span>
 						</div>
 						
 						<!-- 조회수 -->
 						<div class="form-group">
 							<span class="form-text">조회수</span>
-							<span class="form-value">123</span>
+							<span class="form-value">${boardVo.hit}</span>
 						</div>
 						
 						<!-- 작성일 -->
 						<div class="form-group">
 							<span class="form-text">작성일</span>
-							<span class="form-value">2020-03-02</span>
+							<span class="form-value">${boardVo.reg_date}</span>
 						</div>
 						
 						<!-- 제목 -->
 						<div class="form-group">
 							<span class="form-text">제 목</span>
-							<span class="form-value">여기에는 글제목이 출력됩니다.</span>
+							<span class="form-value">${boardVo.title}</span>
 						</div>
 					
 						<!-- 내용 -->
 						<div id="txt-content">
 							<span class="form-value" >
-								여기에는 본문내용이 출력됩니다.<br>
-								여기에는 본문내용이 출력됩니다.<br>
-								여기에는 본문내용이 출력됩니다.<br>
-								여기에는 본문내용이 출력됩니다.<br>
-								여기에는 본문내용이 출력됩니다.<br>
-								여기에는 본문내용이 출력됩니다.<br>
-								여기에는 본문내용이 출력됩니다.<br>
-								여기에는 본문내용이 출력됩니다.<br>
+								${boardVo.content}
 							</span>
 						</div>
 						
-						<a id="btn_modify" href="">수정</a>
-						<a id="btn_modify" href="">목록</a>
+						<c:if test="${sessionScope.authUser.no eq boardVo.user_no}">
+						<a id="btn_modify" href="/mysite2/board?action=modifyFrom&no=${boardVo.no}">수정</a>
+						</c:if>
+						<a id="btn_modify" href="board">목록</a>
 						
 					</form>
 	                <!-- //form -->
@@ -127,10 +96,9 @@
 		<!-- //content  -->
 		<div class="clear"></div>
 
-		<div id="footer">
-			Copyright ⓒ 2020 황일영. All right reserved
-		</div>
-		<!-- //footer -->
+		<!-- footer -->
+		<c:import url="/WEB-INF/views/include/footer.jsp"></c:import>
+		
 	</div>
 	<!-- //wrap -->
 

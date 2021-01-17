@@ -45,7 +45,7 @@
 
 			<div id="board">
 				<div id="list">
-					<form action="" method="">
+					<form action="search" method="ㅎget">
 						<div class="form-group text-right">
 							<input type="text">
 							<button type="submit" id=btn_search>검색</button>
@@ -67,13 +67,13 @@
 						<tbody>
 							<tr>
 								<td>${vo.no}</td>
-								<td class="text-left"><a href="#">${vo.title}</a></td>
+								<td class="text-left"><a href="/mysite2/board?action=read&no=${vo.no}">${vo.title}</a></td>
 								<td>${vo.name}</td>
 								<td>${vo.hit}</td>
 								<td>${vo.reg_date}</td>
 								<c:choose>
 									<c:when test="${sessionScope.authUser.no eq vo.user_no}">
-										<td><a href="/mysite2/board?action=delete&no=${boardList.no}">[삭제]</a></td>
+										<td><a href="/mysite2/board?action=delete&no=${vo.no}">[삭제]</a></td>
 									</c:when>
 									<c:otherwise>
 										<td> </td>
