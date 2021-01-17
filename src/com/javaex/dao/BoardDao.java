@@ -203,7 +203,7 @@ public class BoardDao {
 			return count;
 		}
 		
-		//게시글 읽어오기
+		//게시글 읽어오기 (조금 더 수정 필요)
 		public BoardVo getB(int bno) {
 			BoardVo boardVo = null;
 			getConnection();

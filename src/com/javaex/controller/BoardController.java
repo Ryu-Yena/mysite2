@@ -79,10 +79,10 @@ public class BoardController extends HttpServlet {
 			int no = Integer.parseInt(request.getParameter("no"));
 			System.out.println(no);
 			
-			//dao
+			//dao 여기도 수정예정
 			BoardDao boardDao = new BoardDao();
 			
-			//조회수 업데이트...
+			//조회수 업데이트...수정예정
 			boardDao.hitB(no);
 			
 			//dao getB
