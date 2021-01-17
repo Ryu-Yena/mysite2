@@ -58,6 +58,30 @@ public class BoardController extends HttpServlet {
 			//리다이렉트
 			WebUtil.redirect(request, response, "/mysite2/board");
 			
+		}else if("delete".equals(action)){
+			System.out.println("게시글 삭제");
+			
+			//파라미터 값 꺼내기
+			String title = request.getParameter("title");
+			String content = request.getParameter("content");
+
+			//세션에 있는 no
+			HttpSession session = request.getSession();
+			UserVo authUser = (UserVo)session.getAttribute("authUser");
+			int no = authUser.getNo();
+			
+			//vo로 묶기
+			BoardVo boardVo = new BoardVo(title, content, no);
+			
+			System.out.println(boardVo);
+			
+			//Dao insert(vo)사용
+			BoardDao boardDao = new BoardDao();
+			boardDao.insertB(boardVo);
+			
+			//리다이렉트
+			WebUtil.redirect(request, response, "/mysite2/board");
+			
 		}else {
 			System.out.println("게시판 메인 리스트");
 			

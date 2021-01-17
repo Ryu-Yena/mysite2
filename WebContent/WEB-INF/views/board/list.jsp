@@ -71,7 +71,14 @@
 								<td>${vo.name}</td>
 								<td>${vo.hit}</td>
 								<td>${vo.reg_date}</td>
-								<td><a href="">[삭제]</a></td>
+								<c:choose>
+									<c:when test="${sessionScope.authUser.no eq vo.user_no}">
+										<td><a href="/mysite2/board?action=delete">[삭제]</a></td>
+									</c:when>
+									<c:otherwise>
+										<td> </td>
+									</c:otherwise>
+								</c:choose>
 							</tr>
 						</tbody>
 					</c:forEach>
@@ -96,8 +103,17 @@
 						
 						<div class="clear"></div>
 					</div>
-					<a id="btn_write" href="/mysite2/board?action=writeForm">글쓰기</a>
-				
+					
+					<c:choose>
+						<c:when test="${empty authUser}">
+							
+						</c:when>
+						<c:otherwise>
+							<a id="btn_write" href="/mysite2/board?action=writeForm">글쓰기</a>
+						</c:otherwise>
+										
+					</c:choose>
+									
 				</div>
 				<!-- //list -->
 			</div>
