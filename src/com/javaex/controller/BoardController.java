@@ -109,6 +109,24 @@ public class BoardController extends HttpServlet {
 			//포워드
 			WebUtil.forward(request, response, "/WEB-INF/views/board/modifyForm.jsp");
 			
+		}else if ("modify".equals(action)) {
+			System.out.println("게시글 수정");
+			
+			//파라미터 값 가져오기
+			String title = request.getParameter("title");
+			String content = request.getParameter("content");
+			int no = Integer.parseInt(request.getParameter("no"));
+			
+			//BoardVo
+			BoardVo boardVo = new BoardVo(no, title, content);
+			
+			//Dao updateB
+			BoardDao boardDao = new BoardDao();
+			boardDao.updateB(boardVo);
+			
+			//redirect
+			WebUtil.redirect(request, response, "/mysite2/Board");
+			
 		}else {
 			System.out.println("게시판 메인 리스트");
 			

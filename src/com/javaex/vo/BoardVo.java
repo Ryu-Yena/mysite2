@@ -44,6 +44,15 @@ public class BoardVo {
 		this.user_no = user_no;
 	}
 	
+	
+
+
+	public BoardVo(int no, String title, String content) {
+		super();
+		this.no = no;
+		this.title = title;
+		this.content = content;
+	}
 
 
 	//g/s
