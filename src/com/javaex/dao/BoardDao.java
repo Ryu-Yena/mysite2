@@ -6,6 +6,8 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -14,6 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.javaex.vo.BoardVo;
+import com.javaex.vo.GuestVo;
 
 
 public class BoardDao {
@@ -92,5 +95,49 @@ public class BoardDao {
 			}
 			close();
 			return count;
+		}
+		
+		
+		//게시글 리스트
+		public List<BoardVo> getBoardList(){
+			List<BoardVo> boardList = new ArrayList<BoardVo>();
+			
+			getConnection();
+			
+			try {
+					// 3. SQL문 준비 / 바인딩 / 실행 --> 완성된 sql문을 가져와서 작성할것
+					String query = "";
+					query += " select  no, ";
+					query += "         title, ";
+					query += "         content, ";
+					query += "         hit, ";
+					query += "         to_char(reg_date, 'YY-MM-DD HH24:MI') ";
+					query += " from board";
+					
+					pstmt = conn.prepareStatement(query);
+					
+					
+					rs = pstmt.executeQuery();
+
+					// 4.결과처리
+					while (rs.next()) {
+						int no = rs.getInt("no");
+						String title = rs.getString("title");
+						String content = rs.getString("content");
+						int hit = rs.getInt("hit");
+						String reg_date = rs.getString("reg_date");
+
+						BoardVo BoardVo = new BoardVo(no, title, content, hit, reg_date);
+						boardList.add(BoardVo);
+					}
+
+				} catch (SQLException e) {
+					System.out.println("error:" + e);
+				}
+
+				close();
+
+				return boardList;
+
 		}
 }

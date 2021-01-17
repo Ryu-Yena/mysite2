@@ -16,9 +16,31 @@
 <body>
 	<div id="wrap">
 
-		<!-- header +navi 옮김 -->
-		<c:import url="/WEB-INF/views/include/header.jsp"></c:import>
+		<!-- 로그인성공했을때 -->
+				<ul>
+					<li>님 안녕하세요^^</li>
+					<li><a href="/mysite2/user?action=logout">로그아웃</a></li>
+					<li><a href="/mysite2/user?action=modifyForm">회원정보수정</a></li>
+				</ul>
+			
+			
+		</div>
+		
+		
+		<div id="nav">
+			<ul>
+				<li><a href="/mysite2/guestbook">방명록</a></li>
+				<li><a href="">갤러리</a></li>
+				<li><a href="/mysite2/board">게시판</a></li>
+				<li><a href="">입사지원서</a></li>
+			</ul>
+			<div class="clear"></div>
+		</div>
 
+		<!-- //header -->
+		<!-- //nav -->
+		
+		
 		<div id="aside">
 			<h2>게시판</h2>
 			<ul>
@@ -46,7 +68,7 @@
 
 			<div id="board">
 				<div id="writeForm">
-					<form action="#" method="get">
+					<form action="/mysite2/board" method="get">
 						<!-- 제목 -->
 						<div class="form-group">
 							<label class="form-text" for="txt-title">제목</label>
@@ -58,8 +80,10 @@
 							<textarea id="txt-content"></textarea>
 						</div>
 						
-						<a id="btn_cancel" href="">취소</a>
+						<a id="btn_cancel" href="/mystite2/board">취소</a>
 						<button id="btn_add" type="submit" >등록</button>
+						
+						<input type="text" name="action" value="write">
 						
 					</form>
 	                <!-- //form -->

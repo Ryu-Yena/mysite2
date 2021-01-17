@@ -112,9 +112,9 @@ public class GuestDao {
 					String name = rs.getString("name");
 					String password = rs.getString("password");
 					String content = rs.getString("content");
-					String date = rs.getString("reg_date");
+					String reg_date = rs.getString("reg_date");
 
-					GuestVo GuestVo = new GuestVo(no, name, password, content, date);
+					GuestVo GuestVo = new GuestVo(no, name, password, content, reg_date);
 					guestList.add(GuestVo);
 				}
 
