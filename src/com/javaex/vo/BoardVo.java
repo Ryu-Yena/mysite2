@@ -42,8 +42,7 @@ public class BoardVo {
 		this.content = content;
 		this.user_no = user_no;
 	}
-
-
+	
 
 
 	//g/s

@@ -73,7 +73,7 @@
 								<td>${vo.reg_date}</td>
 								<c:choose>
 									<c:when test="${sessionScope.authUser.no eq vo.user_no}">
-										<td><a href="/mysite2/board?action=delete">[삭제]</a></td>
+										<td><a href="/mysite2/board?action=delete&no=${boardList.no}">[삭제]</a></td>
 									</c:when>
 									<c:otherwise>
 										<td> </td>

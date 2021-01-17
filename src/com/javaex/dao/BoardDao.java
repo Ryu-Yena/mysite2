@@ -115,7 +115,7 @@ public class BoardDao {
 					query += "         u.no user_no ";
 					query += " from board b, users u ";
 					query += " where b.user_no = u.no ";
-					query += " order by b.no ";
+					query += " order by b.no desc ";
 					
 					pstmt = conn.prepareStatement(query);
 					
@@ -143,5 +143,33 @@ public class BoardDao {
 
 				return boardList;
 
+		}
+		
+		//게시글 삭제
+		public int deleteB(int no) {
+			int count = 0;
+			getConnection();
+
+			try {
+				// 3. SQL문 준비 / 바인딩 / 실행
+				String query = ""; // 쿼리문 문자열만들기, ? 주의
+				query += " delete from board ";
+				query += " where no = ? ";
+				
+				pstmt = conn.prepareStatement(query); // 쿼리로 만들기
+				pstmt.setInt(1, no);
+
+
+				count = pstmt.executeUpdate(); // 쿼리문 실행
+
+				// 4.결과처리
+				System.out.println(count + "건 삭제");
+
+			} catch (SQLException e) {
+				System.out.println("error:" + e);
+			}
+
+			close();
+			return count;
 		}
 }
