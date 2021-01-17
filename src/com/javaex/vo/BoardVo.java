@@ -7,8 +7,22 @@ public class BoardVo {
 	private String content;
 	private int hit;
 	private String reg_date;
+	private int user_no;
 	
 	
+
+	
+	public BoardVo(int no, String title, String content, int hit, String reg_date, int user_no) {
+		super();
+		this.no = no;
+		this.title = title;
+		this.content = content;
+		this.hit = hit;
+		this.reg_date = reg_date;
+		this.user_no = user_no;
+	}
+	
+	 
 	public BoardVo(int no, String title, String content, int hit, String reg_date) {
 		super();
 		this.no = no;
@@ -17,11 +31,17 @@ public class BoardVo {
 		this.hit = hit;
 		this.reg_date = reg_date;
 	}
-	
-	public BoardVo(String title, String content) {
+
+
+
+
+
+
+	public BoardVo(String title, String content, int user_no) {
 		super();
 		this.title = title;
 		this.content = content;
+		this.user_no = user_no;
 	}
 
 
@@ -76,6 +96,19 @@ public class BoardVo {
 	public void setReg_date(String reg_date) {
 		this.reg_date = reg_date;
 	}
+	
+	public int getUser_no() {
+		return user_no;
+	}
+
+
+
+
+	public void setUser_no(int user_no) {
+		this.user_no = user_no;
+	}
+
+
 
 
 	@Override

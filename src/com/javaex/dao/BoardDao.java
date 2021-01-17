@@ -83,7 +83,7 @@ public class BoardDao {
 
 				pstmt.setString(1, boardVo.getTitle()); 
 				pstmt.setString(2, boardVo.getContent());
-				pstmt.setString(3, );
+				pstmt.setInt(3, boardVo.getUser_no());
 
 				count = pstmt.executeUpdate(); // 쿼리문 실행
 
