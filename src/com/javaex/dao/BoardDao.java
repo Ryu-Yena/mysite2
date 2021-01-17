@@ -75,7 +75,7 @@ public class BoardDao {
 				String query = ""; // 쿼리문 문자열만들기, ? 주의
 				query += " insert into board ";
 				query += " values (seq_board_no.nextval, ?, ?, null, ";
-				query += " to_char(sysdate,'YY-MM-DD HH24:MI'), ?) ";
+				query += " sysdate, ?) ";
 				
 				//System.out.println(query);
 
@@ -107,12 +107,15 @@ public class BoardDao {
 			try {
 					// 3. SQL문 준비 / 바인딩 / 실행 --> 완성된 sql문을 가져와서 작성할것
 					String query = "";
-					query += " select  no, ";
-					query += "         title, ";
-					query += "         content, ";
-					query += "         hit, ";
-					query += "         to_char(reg_date, 'YY-MM-DD HH24:MI') ";
-					query += " from board";
+					query += " select  b.no no, ";
+					query += "         b.title title, ";
+					query += " 		   u.name name, ";
+					query += "         b.hit hit, ";
+					query += "         to_char(b.reg_date,'yyyy-mm-dd hh24:mi') reg_date, ";
+					query += "         u.no user_no ";
+					query += " from board b, users u ";
+					query += " where b.user_no = u.no ";
+					query += " order by b.no ";
 					
 					pstmt = conn.prepareStatement(query);
 					
@@ -123,11 +126,12 @@ public class BoardDao {
 					while (rs.next()) {
 						int no = rs.getInt("no");
 						String title = rs.getString("title");
-						String content = rs.getString("content");
+						String name = rs.getString("name");
 						int hit = rs.getInt("hit");
 						String reg_date = rs.getString("reg_date");
+						int user_no = rs.getInt("user_no");
 
-						BoardVo BoardVo = new BoardVo(no, title, content, hit, reg_date);
+						BoardVo BoardVo = new BoardVo(no, title, name, hit, reg_date, user_no);
 						boardList.add(BoardVo);
 					}
 

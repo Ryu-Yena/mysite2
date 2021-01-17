@@ -63,14 +63,14 @@
 							</tr>
 						</thead>
 					
-					<c:forEach items="${boardList}" var="boardList">
+					<c:forEach items="${requestScope.boardList}" var="vo">
 						<tbody>
 							<tr>
-								<td>${boardList.no}</td>
-								<td class="text-left"><a href="#">${boardList.title}</a></td>
-								<td>${sessionScope.name}</td>
-								<td>${hit}</td>
-								<td>${reg_date}</td>
+								<td>${vo.no}</td>
+								<td class="text-left"><a href="#">${vo.title}</a></td>
+								<td>${vo.name}</td>
+								<td>${vo.hit}</td>
+								<td>${vo.reg_date}</td>
 								<td><a href="">[삭제]</a></td>
 							</tr>
 						</tbody>

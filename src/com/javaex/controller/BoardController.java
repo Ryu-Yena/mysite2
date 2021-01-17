@@ -1,6 +1,8 @@
 package com.javaex.controller;
 
 import java.io.IOException;
+import java.util.List;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -53,10 +55,18 @@ public class BoardController extends HttpServlet {
 			BoardDao boardDao = new BoardDao();
 			boardDao.insertB(boardVo);
 			
-			//포워드
-			WebUtil.forward(request, response, "/mysite2/board");
+			//리다이렉트
+			WebUtil.redirect(request, response, "/mysite2/board");
 			
 		}else {
+			System.out.println("게시판 메인 리스트");
+			
+			BoardDao boardDao = new BoardDao();
+			List<BoardVo> boardList = boardDao.getBoardList();
+			
+			request.setAttribute("boardList", boardList);
+			
+			
 			//메인 게시판 화면 포워드
 			WebUtil.forward(request, response, "/WEB-INF/views/board/list.jsp");
 			
