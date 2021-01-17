@@ -14,12 +14,10 @@ public class UserVo {
 
 	
 
-	public UserVo(int no, String password) {
-		super();
+	public UserVo(int no, String name) {
 		this.no = no;
-		this.password = password;
+		this.name = name;
 	}
-
 
 	public UserVo(String id, String password, String name, String gender) {
 		super();
