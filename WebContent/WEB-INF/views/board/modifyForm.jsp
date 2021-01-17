@@ -6,8 +6,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link href="../../assets/css/mysite.css" rel="stylesheet" type="text/css">
-<link href="../../assets/css/board.css" rel="stylesheet" type="text/css">
+<link href="/mysite2/assets/css/mysite.css" rel="stylesheet" type="text/css">
+<link href="/mysite2/assets/css/board.css" rel="stylesheet" type="text/css">
 
 </head>
 
@@ -53,25 +53,25 @@
 						<!-- 작성자 -->
 						<div class="form-group">
 							<span class="form-text">작성자</span>
-							<span class="form-value">${bvo.name}</span>
+							<span class="form-value">${boardVo.name}</span>
 						</div>
 						
 						<!-- 조회수 -->
 						<div class="form-group">
 							<span class="form-text">조회수</span>
-							<span class="form-value">${bvo.hit}</span>
+							<span class="form-value">${boardVo.hit}</span>
 						</div>
 						
 						<!-- 작성일 -->
 						<div class="form-group">
 							<span class="form-text">작성일</span>
-							<span class="form-value">${bvo.regDate}</span>
+							<span class="form-value">${boardVo.reg_date}</span>
 						</div>
 						
 						<!-- 제목 -->
 						<div class="form-group">
 							<label class="form-text" for="txt-title">제목</label>
-							<input type="text" id="txt-title" name="title" value="여기에는 글제목이 출력됩니다.">
+							<input type="text" id="txt-title" name="title" value="${boardVo.title}">
 						</div>
 					
 						
@@ -79,7 +79,7 @@
 						<!-- 내용 -->
 						<div class="form-group">
 							<textarea id="txt-content" name="content">
-							${bvo.content}
+							${boardVo.content}
 							</textarea>
 						</div>
 						

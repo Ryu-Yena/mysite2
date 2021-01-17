@@ -96,7 +96,7 @@ public class BoardController extends HttpServlet {
 			WebUtil.forward(request, response, "/WEB-INF/views/board/read.jsp");
 		
 		
-		}else if("writeForm".equals(action)) {
+		}else if("modifyForm".equals(action)) {
 			System.out.println("게시글 수정 폼");
 			
 			int no = Integer.parseInt(request.getParameter("no"));
