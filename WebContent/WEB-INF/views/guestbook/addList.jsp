@@ -85,7 +85,7 @@
 							<td>${guestList.no}</td>
 							<td>${guestList.name}</td>
 							<td>${guestList.Reg_date}</td>
-							<td><a href="/mysite/gbc?action=deleteForm&no=${guestList.no}">[삭제]</a></td>
+							<td><a href="/mysite2/gbc?action=deleteForm&no=${guestList.no}">[삭제]</a></td>
 						</tr>
 						<tr>
 							<td colspan=4 class="text-left">${guestList.contnet}</td>
@@ -100,8 +100,7 @@
 		<div class="clear"></div>
 		
 		<!-- footer -->
-		<jsp:include page="/WEB-INF/views/include/footer.jsp"></jsp:include>
-
+		<c:import url="/WEB-INF/views/include/footer.jsp"></c:import>
 	</div>
 	<!-- //wrap -->
 
